@@ -4,7 +4,10 @@ Created on Mon Sep 19 14:43:12 2016
 
 @author: Jally
 """
-
+#Overall Comment: Very good methods and calculation! There are certain ways to improve the efficiency of the code, if you
+#interest, you can find them. I have use 'Comment' in front of my comment, you can have a look and if any misunderstanding 
+#happened, please let me know. One more suggestion for you, can you refer to the example format that professor has shown 
+#in the lesson to keep the same format as others so that it is easy to read. Excellent Job Anyway!
 # -*- coding: utf-8 -*-
 """
 Created on Thu Sep  8 23:48:11 2016
@@ -27,7 +30,6 @@ def max(a,b):
         return b# if a is smaller than b, return b
 max(3,4)
         
-
 
 def max_of_three(a,b,c):
     '''
@@ -219,7 +221,7 @@ def overlapping(list1,list2):
      returns:
      True if list1 and list2 have overlap, False otherwise
     '''
-    for i in range(0,len(list1)):
+    for i in range(0,len(list1)): #Comment: This is equal to range(len(list1))
         for j in range(0,len(list2)):
             if list1[i]==list2[j]: # two nested for-loops to compare each value between list1 and list2
                 return True # as long as one pair is same,means they have overlap and return true
@@ -227,7 +229,7 @@ def overlapping(list1,list2):
                 continue
     return False # compare all the values in list1 with list2's, no overlap,return false
 overlapping(["hello",1,2],[3,4,"hello"])
-
+#Comment: You can improve this code with in. For i in range(len(list1)): if list1[i] in list2: return True
 
 def generate_n_chars(n,c):
     '''
