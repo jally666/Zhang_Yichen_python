@@ -132,7 +132,7 @@ def main1():
     
 def main2():
     '''
-    this main1() function is to read the Abalone dataset and then draw histograms and box plot
+    this main2() function is to read the Abalone dataset and then draw histograms and box plot
     '''
     data_index='http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data'
     abalone=pd.read_csv(data_index,header=None,names=['sex','length','diameter','height','whole weight',\
@@ -145,7 +145,7 @@ def main2():
         
 def main3():
     '''
-    this main1() function is to read the Census-Income (KDD) Data set and then draw histograms and box plot
+    this main3() function is to read the Census-Income (KDD) Data set and then draw histograms and box plot
     '''
     kdd=pd.read_csv('/Users/Jally/Github/Zhang_Yichen_python/census-income.data ',\
     header=None,names=['age','class of worker','industry code','occupation code',\
