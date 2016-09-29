@@ -24,9 +24,11 @@ def histogram_outlier(data,tit):
     output:
     no return, but histograms of segments of data and one box plot of whole data
     '''
+    # delete all the NAN data
     for i in range(len(data)):
         if math.isnan(data[i]):
-            data.drop[data[i]] # delete all the NAN data
+            data.drop[data[i]] 
+    
     # separate the outliers
     stati = data.describe()# obtain the simple location statistics
     upper = stati.ix[6,0]+(stati.ix[6,0]-stati.ix[4,0])*1.5#caculate outliers up threshold
@@ -38,11 +40,11 @@ def histogram_outlier(data,tit):
     low=1# initalize a key to determine if there is outliers
     for i in range(0,len(data)):
         if float(data[i])> upper:
-            outlierup=outlierup+[float(data[i])] # if data are beyond the upper threshold, store them in outlierup      
+            outlierup.append(float(data[i]))  # if data are beyond the upper threshold, store them in outlierup      
         elif float(data[i])<lower:
-            outlierdown=outlierdown+[float(data[i])]# if data are lower than the lower threshold, store them in outlierdown
+            outlierdown.append(float(data[i]))# if data are lower than the lower threshold, store them in outlierdown
         else:        
-            norm=norm+[float(data[i])]# if data are between the two thresholds, store them in norm
+            norm.append(float(data[i]))# if data are between the two thresholds, store them in norm
     outlierup=Series(outlierup) 
     norm=Series(norm)
     outlierdown=Series(outlierdown)# transfer these three lists into pandas' series  
@@ -70,8 +72,8 @@ def histogram_outlier(data,tit):
     plt.ylabel("Frequency")
     plt.show()
    
-    
-    if up==1:# if there are upper outlier's data, draw upper outlier histogram
+    # if there are upper outlier's data, draw upper outlier histogram
+    if up==1:
         statup=outlierup.describe()# obtain the simple location statistics of upper outliers
         iqr=statup.ix[6,0]-statup.ix[4,0] #caculate the IQR
         h=2*iqr/(len(outlierup)**(1/3))#use freedom-diaconis rule to caculate the optimal bin width
@@ -87,8 +89,9 @@ def histogram_outlier(data,tit):
         plt.xlabel("Value")
         plt.ylabel("Frequency")
         plt.show()
-       
-    if low==1: # if there are lower outlier's data, draw lower outlier histogram
+    
+    # if there are lower outlier's data, draw lower outlier histogram
+    if low==1: 
         statdown=outlierdown.describe()# obtain the simple location statistics of lower outliers
         iqr=statdown.ix[6,0]-statdown.ix[4,0]#caculate the IQR
         h=2*iqr/(len(outlierdown)**(1/3))#use freedom-diaconis rule to caculate the optimal bin width
@@ -155,16 +158,16 @@ def main3():
     'instance weight','migration code-change in msa','migration code-change in reg',\
     'migration code-move within reg','live in this house 1 year ago','migration prev res in sunbelt',\
     'num persons worked for employer','family members under 18','total person earnings',\
-    'country of birth father','country of birth mother','country of birth self',\
-    'citizenship','total person income','own business or self employed','''taxable income amount',\
-    'fill inc questionnaire for veterans admin','veterans benefits','weeks worked in year'''])
+    'country of birth mother','country of birth self',\
+    'citizenship','total person income','own business or self employed','taxable income amount',\
+    'veterans benefits','weeks worked in year'])
     title=kdd.head(0)
     
     for i in range(0,len(title.columns)):
         if type(kdd.ix[1,i])==numpy.float64 or type(kdd.ix[1,i])==numpy.int64 : # if it is number type, draw the histograms of this series
             histogram_outlier(kdd.ix[:,i],title.columns[i])
     
-           
+# check           
 main1()
 main2()
 main3()
